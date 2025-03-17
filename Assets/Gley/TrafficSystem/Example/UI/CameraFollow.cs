@@ -37,24 +37,26 @@ namespace Gley.TrafficSystem.Internal
             {
                 yield return request.SendWebRequest();
 
-                if (request.result == UnityWebRequest.Result.Success)
-                {
-                    string jsonResponse = request.downloadHandler.text;
-                    Debug.Log("Response: " + jsonResponse);
-
-                    // Parse JSON and get the recommended car color
-                    PredictionResponse response = JsonUtility.FromJson<PredictionResponse>(jsonResponse);
-
-                    if (response != null && !string.IsNullOrEmpty(response.recommended_car_color))
-                    {
-                        Debug.Log("Recommended Car Color: " + response.recommended_car_color);
-                        SelectCar(response.recommended_car_color);
-                    }
-                }
-                else
+                if (request.result != UnityWebRequest.Result.Success)
                 {
                     Debug.LogError("Error fetching prediction: " + request.error);
+                    yield break; // Stop execution on failure
                 }
+
+                string jsonResponse = request.downloadHandler.text;
+                Debug.Log("Response: " + jsonResponse);
+
+                // Parse JSON safely
+                PredictionResponse response = JsonUtility.FromJson<PredictionResponse>(jsonResponse);
+                
+                if (response == null || string.IsNullOrEmpty(response.recommended_car_color))
+                {
+                    Debug.LogError("Invalid or empty JSON response!");
+                    yield break; // Stop execution if response is invalid
+                }
+
+                Debug.Log("Recommended Car Color: " + response.recommended_car_color);
+                SelectCar(response.recommended_car_color);
             }
         }
 
@@ -97,13 +99,13 @@ namespace Gley.TrafficSystem.Internal
 
             currentTarget = targetCar;
 
-            // Destroy all other cars
+            // Hide all other cars instead of destroying them
             List<Transform> allCars = new List<Transform> { blueCar, greyCar, whiteCar, purpleCar, greenCar };
             foreach (Transform car in allCars)
             {
-                if (car != null && car != currentTarget)
+                if (car != null)
                 {
-                    car.gameObject.SetActive(false);
+                    car.gameObject.SetActive(car == currentTarget); // Only keep the selected car visible
                 }
             }
 

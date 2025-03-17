@@ -15,7 +15,7 @@ public class CarMaterialChanger : MonoBehaviour
     void Start()
     {
         // Hard-coded response for testing - remove this line when using the API
-         ApplyColor("green");
+        ApplyColor("green");
         
         // Uncomment this line to use the API
         //StartCoroutine(GetColorFromAPI());
