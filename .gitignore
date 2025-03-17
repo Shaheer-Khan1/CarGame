@@ -1,0 +1,92 @@
+# ========== Unity Specific ==========
+
+# Ignore the Auto-Generated Unity folder
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+
+# Ignore .meta files that don't belong
+# (They should be versioned when they belong to Assets)
+# But Temp and Library folders generate unnecessary ones
+/[Ll]ibrary/**/*.meta
+/[Tt]emp/**/*.meta
+
+# ========== Visual Studio / JetBrains Rider ==========
+
+# Ignore Visual Studio / Rider project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# ========== OS-Specific Files ==========
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*.swp
+*.swo
+
+# ========== Logs & Crash Reports ==========
+*.log
+*.stacktrace
+
+# ========== Ignore Cache & Generated Files ==========
+/[Uu]ser[Ss]ettings/
+*.pidb
+*.idb
+*.ilk
+*.aps
+*.sdf
+*.tlog
+*.VC.db
+*.pdb
+*.opendb
+
+# Ignore Unity Collab Thumbnails
+/[Cc]ollab/
+
+# ========== Ignore Builds ==========
+/[Bb]uilds/
+/[Bb]uild/
+
+# Ignore PlayMode and Editor Logs
+Logs/
+UnityShaderCompiler.log
+
+# ========== Ignore External Tools (Optional) ==========
+# Rider, JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+.history/
+
+# ========== Git Ignore Overrides ==========
+# Uncomment these if you want to force keeping these files
+#!/Assets/
+#!/Packages/
+#!/ProjectSettings/
